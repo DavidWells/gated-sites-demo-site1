@@ -101,8 +101,8 @@ exports.handler = (event, context, callback) => {
         dom.submit();
       }
 
-      // init
-      redirect(window.location.origin)
+
+      window.redirect = redirect
     </script>
   </html>`;
 
