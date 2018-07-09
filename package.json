@@ -7,9 +7,13 @@
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
   },
+  "devDependencies": {
+    "netlify-lambda": "^0.4.0"
+  },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "buildFunctions": "netlify-lambda build functions",
+    "build": "npm run buildFunctions && react-scripts build",
     "postbuild": "cp ./src/_redirects build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
