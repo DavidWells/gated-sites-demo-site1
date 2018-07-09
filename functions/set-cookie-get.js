@@ -48,6 +48,28 @@ exports.handler = (event, context, callback) => {
       h1 { color: #73757d; }
       body { width: 100%; }
     </style>
+    <body>
+      <noscript>
+        <meta http-equiv="refresh" content="0; url=${process.env.URL}" />
+      </noscript>
+      <h1>Set Cookie</h1>
+
+      <p>Cookie is now set. check dev tools for httpOnly cookies</p>
+
+      <h2>Cookie value:</h2>
+      <code>
+        <pre>${myCookie}</pre>
+      </code>
+
+      <h2>Json web token:</h2>
+      <code>
+        <pre>${JSON.stringify(decodedToken, null, 2)}</pre>
+      </code>
+
+      <a href="${process.env.URL}">
+        Try to go to ${process.env.URL}
+      </a>
+    </body>
     <script>
       function redirect(url) {
         var dom = window.document.createElement('form');
@@ -80,30 +102,8 @@ exports.handler = (event, context, callback) => {
       }
 
       // init
-      redirect(window.location.href)
+      redirect(window.location.origin)
     </script>
-    <body>
-      <noscript>
-        <meta http-equiv="refresh" content="0; url=${process.env.URL}" />
-      </noscript>
-      <h1>Set Cookie</h1>
-
-      <p>Cookie is now set. check dev tools for httpOnly cookies</p>
-
-      <h2>Cookie value:</h2>
-      <code>
-        <pre>${myCookie}</pre>
-      </code>
-
-      <h2>Json web token:</h2>
-      <code>
-        <pre>${JSON.stringify(decodedToken, null, 2)}</pre>
-      </code>
-
-      <a href="${process.env.URL}">
-        Try to go to ${process.env.URL}
-      </a>
-    </body>
   </html>`;
 
   const cookieResponse = {
