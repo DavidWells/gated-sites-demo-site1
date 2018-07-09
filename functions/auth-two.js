@@ -36,11 +36,22 @@ exports.handler = (event, context, callback) => {
     </style>
     <body>
       <h1>Set Cookie</h1>
-    <p>cookie set. check dev tools</p>
-    <h2>Cookie value:</h2>
-    <code><pre>${myCookie}</pre></code>
-    <h2>Json web token:</h2>
-    <code><pre>${JSON.stringify(decodedToken, null, 2)}</pre></code>
+
+      <p>Cookie is now set. check dev tools for httpOnly cookies</p>
+
+      <h2>Cookie value:</h2>
+      <code>
+        <pre>${myCookie}</pre>
+      </code>
+
+      <h2>Json web token:</h2>
+      <code>
+        <pre>${JSON.stringify(decodedToken, null, 2)}</pre>
+      </code>
+
+      <a href="${process.env.URL}">
+        Try to go to ${process.env.URL}
+      </a>
     </body>
   </html>`;
 
