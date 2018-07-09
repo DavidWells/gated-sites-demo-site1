@@ -44,7 +44,7 @@ exports.handler = (event, context, callback) => {
   }
 
   const html = `
-  <html lang="">
+  <html lang="en">
     <head>
     <meta charset="utf-8">
     <style>
