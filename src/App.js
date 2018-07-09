@@ -14,7 +14,7 @@ class App extends Component {
           You need a valid JWT to see this site
         </p>
         <p className="App-intro">
-          <a href="https://gated-sites-demo-login-site.netlify.com/">Back to login portal</a>
+          <a target='_blank' href="https://gated-sites-demo-login-site.netlify.com/">Back to login portal</a>
         </p>
       </div>
     );
