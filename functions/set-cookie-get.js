@@ -107,7 +107,7 @@ exports.handler = (event, context, callback) => {
 
       setTimeout(function(){
         redirect(${redirectUrl})
-      }, 0);
+      }, 0)
     </script>
   </html>`;
 
