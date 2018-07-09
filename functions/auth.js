@@ -23,7 +23,8 @@ exports.handler = (event, context, callback) => {
     "statusCode": 301,
     "Location" : process.env.URL,
     "headers": {
-      "Set-Cookie": myCookie
+      "Set-Cookie": myCookie,
+      'Cache-Control': 'no-cache'
     }
   }
   console.log('site1 cookieResponse', cookieResponse)
