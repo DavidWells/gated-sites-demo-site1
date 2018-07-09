@@ -1,11 +1,11 @@
 import cookie from 'cookie'
 import jwt from 'jsonwebtoken'
+import util from 'util'
 
 exports.handler = (event, context, callback) => {
-  console.log('queryStringParameters', event.queryStringParameters)
+  const payload = JSON.parse(event.body)
 
-  const params = event.queryStringParameters
-  const authToken = params.token
+  const authToken = event.headers.authorization.substring(7)
   const referrer = event.headers.referer
   console.log('process.env.URL', process.env.URL)
   console.log('referer', referrer)
@@ -29,56 +29,27 @@ exports.handler = (event, context, callback) => {
     path: "/",
     maxAge: twoWeeks,
     // domain: 'gated-sites-demo-site1.netlify.com'
-    //expires: expiresValue
+    // expires: expiresValue
   })
 
   let decodedToken
   try {
     decodedToken = jwt.decode(params.token, { complete: true })
-    console.log('decodedToken', decodedToken)
+    console.log('decodedToken')
+    console.log(util.inspect(decodedToken, false, null))
   } catch (e) {
     console.log(e)
   }
 
-  const html = `
-  <html>
-    <style>
-      h1 { color: #73757d; }
-      body { width: 100%; }
-    </style>
-    <body>
-      <h1>Set Cookie</h1>
-
-      <p>Cookie is now set. check dev tools for httpOnly cookies</p>
-
-      <h2>Cookie value:</h2>
-      <code>
-        <pre>${myCookie}</pre>
-      </code>
-
-      <h2>Json web token:</h2>
-      <code>
-        <pre>${JSON.stringify(decodedToken, null, 2)}</pre>
-      </code>
-
-      <a href="${process.env.URL}">
-        Try to go to ${process.env.URL}
-      </a>
-    </body>
-  </html>`;
-
   const cookieResponse = {
     "statusCode": 200,
-    // "Location" : process.env.URL,
     "headers": {
       "Set-Cookie": myCookie,
       'Cache-Control': 'no-cache',
-      'Content-Type': 'text/html',
     },
-    "body": html
+    "body": ''
   }
-  console.log('site1 cookieResponse', cookieResponse)
-
+  console.log('site1 cookieResponse POST', cookieResponse)
   // set cookie and redirect
   return callback(null, cookieResponse);
 }
