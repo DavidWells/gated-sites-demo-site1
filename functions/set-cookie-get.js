@@ -106,7 +106,7 @@ exports.handler = (event, context, callback) => {
       }
 
       setTimeout(function(){
-        redirect(${redirectUrl})
+        redirect(${JSON.stringify(redirectUrl)})
       }, 0)
     </script>
   </html>`;
