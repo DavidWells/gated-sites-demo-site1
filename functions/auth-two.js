@@ -11,6 +11,17 @@ exports.handler = (event, context, callback) => {
   console.log('referer', referrer)
   console.log('set token', authToken)
 
+  // invalid token - synchronous
+  const secret = 'secret'
+  try {
+    var valid = jwt.verify(authToken, secret);
+    console.log('authToken valid', valid)
+  } catch(err) {
+    console.log('verify error', err)
+    console.log(err.name)
+    console.log(err.message)
+  }
+
   const myCookie = cookie.serialize('nf_jwt', authToken, {
     secure: true,
     httpOnly: true,
