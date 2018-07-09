@@ -14,7 +14,8 @@ exports.handler = (event, context, callback) => {
     secure: true,
     httpOnly: true,
     path: "/",
-    maxAge: 60 * 60 * 24 * 7
+    maxAge: 60 * 60 * 24 * 7,
+    domain: 'gated-sites-demo-site1.netlify.com'
     //expires: expiresValue
   })
 
@@ -25,7 +26,7 @@ exports.handler = (event, context, callback) => {
       "Set-Cookie": myCookie
     }
   }
-  console.log('cookieResponse', cookieResponse)
+  console.log('site1 cookieResponse', cookieResponse)
 
   // set cookie and redirect
   return callback(null, cookieResponse);
