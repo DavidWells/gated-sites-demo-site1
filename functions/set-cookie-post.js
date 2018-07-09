@@ -34,7 +34,7 @@ exports.handler = (event, context, callback) => {
 
   let decodedToken
   try {
-    decodedToken = jwt.decode(params.token, { complete: true })
+    decodedToken = jwt.decode(authToken, { complete: true })
     console.log('decodedToken')
     console.log(util.inspect(decodedToken, false, null))
   } catch (e) {
