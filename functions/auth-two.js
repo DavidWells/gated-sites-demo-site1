@@ -19,13 +19,29 @@ exports.handler = (event, context, callback) => {
     //expires: expiresValue
   })
 
+  const html = `
+  <html>
+    <style>
+      h1 { color: #73757d; }
+    </style>
+    <body>
+      <h1>Set Cookie</h1>
+      <p>cookie set. check dev tools</p>
+      <pre>
+        ${myCookie}
+      <pre>
+    </body>
+  </html>`;
+
   const cookieResponse = {
-    "statusCode": 301,
-    "Location" : process.env.URL,
+    "statusCode": 200,
+    // "Location" : process.env.URL,
     "headers": {
       "Set-Cookie": myCookie,
-      'Cache-Control': 'no-cache'
-    }
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'text/html',
+    },
+    "body": html
   }
   console.log('site1 cookieResponse', cookieResponse)
 
