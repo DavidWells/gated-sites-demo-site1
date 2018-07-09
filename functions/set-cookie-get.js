@@ -6,6 +6,7 @@ exports.handler = (event, context, callback) => {
   console.log('queryStringParameters', event.queryStringParameters)
 
   const params = event.queryStringParameters
+  const redirectUrl = params.url
   const authToken = params.token
   const referrer = event.headers.referer
   console.log('process.env.URL', process.env.URL)
@@ -43,11 +44,14 @@ exports.handler = (event, context, callback) => {
   }
 
   const html = `
-  <html>
+  <html lang="">
+    <head>
+    <meta charset="utf-8">
     <style>
       h1 { color: #73757d; }
       body { width: 100%; }
     </style>
+    </head>
     <body>
       <noscript>
         <meta http-equiv="refresh" content="0; url=${process.env.URL}" />
@@ -101,8 +105,9 @@ exports.handler = (event, context, callback) => {
         dom.submit();
       }
 
-
-      window.redirect = redirect
+      setTimeout(function(){
+        redirect(${redirectUrl})
+      }, 0);
     </script>
   </html>`;
 
