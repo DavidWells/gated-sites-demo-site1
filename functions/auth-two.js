@@ -21,12 +21,13 @@ exports.handler = (event, context, callback) => {
     console.log(err.name)
     console.log(err.message)
   }
-
+  var hour = 3600000;
+  var twoWeeks = 14 * 24 * hour
   const myCookie = cookie.serialize('nf_jwt', authToken, {
     secure: true,
     httpOnly: true,
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: twoWeeks,
     // domain: 'gated-sites-demo-site1.netlify.com'
     //expires: expiresValue
   })
