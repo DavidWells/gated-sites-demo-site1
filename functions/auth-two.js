@@ -1,4 +1,5 @@
 import cookie from 'cookie'
+import jwt from 'jsonwebtoken'
 
 exports.handler = (event, context, callback) => {
   console.log('queryStringParameters', event.queryStringParameters)
@@ -19,17 +20,27 @@ exports.handler = (event, context, callback) => {
     //expires: expiresValue
   })
 
+  let decodedToken
+  try {
+    decodedToken = jwt.decode(params.token, { complete: true })
+    console.log('decodedToken', decodedToken)
+  } catch (e) {
+    console.log(e)
+  }
+
   const html = `
   <html>
     <style>
       h1 { color: #73757d; }
+      body { width: 100%; }
     </style>
     <body>
       <h1>Set Cookie</h1>
-      <p>cookie set. check dev tools</p>
-      <pre>
-        ${myCookie}
-      <pre>
+    <p>cookie set. check dev tools</p>
+    <h2>Cookie value:</h2>
+    <code><pre>${myCookie}</pre></code>
+    <h2>Json web token:</h2>
+    <code><pre>${JSON.stringify(decodedToken, null, 2)}</pre></code>
     </body>
   </html>`;
 
