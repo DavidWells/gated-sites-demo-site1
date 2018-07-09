@@ -3,15 +3,10 @@ import jwt from 'jsonwebtoken'
 import util from 'util'
 
 exports.handler = (event, context, callback) => {
-  console.log('queryStringParameters', event.queryStringParameters)
 
   const params = event.queryStringParameters
   const redirectUrl = params.url
   const authToken = params.token
-  const referrer = event.headers.referer
-  console.log('process.env.URL', process.env.URL)
-  console.log('referer', referrer)
-  console.log('set token', authToken)
 
   // invalid token - synchronous
   const secret = 'secret'
@@ -120,7 +115,8 @@ exports.handler = (event, context, callback) => {
     },
     "body": html
   }
-  console.log('site1 cookieResponse', cookieResponse)
+
+  console.log(process.env.URL, cookieResponse)
 
   // set cookie and redirect
   return callback(null, cookieResponse);
