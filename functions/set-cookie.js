@@ -42,11 +42,7 @@ exports.handler = (event, context, callback) => {
   const html = `
   <html lang="en">
     <head>
-    <meta charset="utf-8">
-    <style>
-      h1 { color: #73757d; }
-      body { width: 100%; }
-    </style>
+      <meta charset="utf-8">
     </head>
     <body>
       <noscript>
